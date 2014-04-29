@@ -42,7 +42,7 @@ class ModulesSeedCommand extends AbstractCommand {
 			{
 				if ($module->def('seeder'))
 				{
-					$module->seed();
+					$module->seed($this);
 					$this->info("Seeded '" . $module->name() . "' module.");
 				}
 				else

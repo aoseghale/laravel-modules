@@ -186,13 +186,16 @@ class Module extends \Illuminate\Support\ServiceProvider {
 	 * Run the seeder if it exists
 	 * @return void
 	 */
-	public function seed()
+	public function seed($command = null)
 	{
 		$class = $this->def('seeder');
 
 		if (class_exists($class))
 		{
 			$seeder = new $class;
+            $seeder->setContainer($app);
+            if (isset($command))
+                $seeder->setCommand($app);
 			$seeder->run();
 		}
 	}
