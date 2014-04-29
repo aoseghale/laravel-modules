@@ -193,9 +193,10 @@ class Module extends \Illuminate\Support\ServiceProvider {
 		if (class_exists($class))
 		{
 			$seeder = new $class;
-            $seeder->setContainer($app);
+            if (isset($this->app))
+                $seeder->setContainer($this->app);
             if (isset($command))
-                $seeder->setCommand($app);
+                $seeder->setCommand($command);
 			$seeder->run();
 		}
 	}
